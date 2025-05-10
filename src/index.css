@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+.btn{
+  @apply text-black px-4 rounded-lg w-full cursor-pointer
+}
+
+.loader {
+    border: 2px solid #FFF;
+    width: 48px;
+    height: 48px;
+    background: #FFA000;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    left: calc(50% - 24px);
+    top: calc(50% - 24px);
+    box-sizing: border-box;
+    animation: rotation 2s linear infinite;
+    z-index: -1;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 24px solid;
+    border-color: transparent #FFF;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .looad{
+    top: calc(70% - 24px);
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+
+  @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+  :root
+  {
+      --main-color:#0aad0a;
+      --light-color:#f0f3f2;
+      --shadow: rgba(145,158,171,.2) 0px 2px 4px -1px,rgba(145,158,171,.14) 0px 4px 5px 0px,rgba(145,158,171,.12) 0px 1px 10px 0px;
+      --font-family:'Encode Sans Expanded', sans-serif;
+      --rating-color:#ffc908;
+  }
+  
+  body{
+      font-family: var(--font-family) !important;
+  }
+  .rating-color
+  {
+      color: var(--rating-color);
+  }
+  .cursor-pointer
+  {
+      cursor: pointer;
+  }
+  a , a:hover{
+      text-decoration: none;
+  }
+  
+  .product .btn 
+  {
+      transition: transform 1s , opacity 1s;
+      transform: translateY(100%);
+      opacity: 0;
+  }
+  .product:hover .btn 
+  {
+      opacity: 1;
+      transform: translateY(0%);
+  
+  }
+  .product .hrt 
+  {
+      transition: transform 1s , opacity 1s;
+      transform: translateY(100%);
+      opacity: 0;
+  }
+  .product:hover .hrt
+  {
+      opacity: 1;
+      transform: translateY(100%);
+  
+  }
+  .font-sm
+  {
+      font-size: 14px;
+  }
+  .text-main
+  {
+      color: var(--main-color);
+  }
+  .bg-main
+  {
+      background-color: var(--main-color) !important;
+  }
+  .bg-main-light 
+  {
+      background-color: var(--light-color) !important;
+  }
