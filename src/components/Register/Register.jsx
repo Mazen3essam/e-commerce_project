@@ -23,18 +23,29 @@ export default function Register(){
 
         .then((res)=>{
             setIsLoading(false)
+
             if(res.data.message =="success"){
-                if(res.data.user.role == "user"){
+                localStorage.setItem("userRole","user")
+
+                if( localStorage.getItem("userRole") == "vendor"){
+                    //console.log(res.data.user.role);
                     localStorage.setItem("userToken",res.data.token)
-                    setuserLogin(res.data.token)
-                    //go to customer home
+                    setuserLogin(res.data.token) 
+                    setuserRole("vendor")    
+                    toast.success("Welcome",{duration: 6000,icon: '🤗'})
+                    navigate("/vendor")
+                }
+                else if( localStorage.getItem("userRole") == "user"){
+                    //console.log(res.data.user.role);
+                    localStorage.setItem("userToken",res.data.token)
+                    setuserLogin(res.data.token) 
+                    setuserRole("user")    
                     toast.success("Welcome",{duration: 6000,icon: '🤗'})
                     navigate("/")
                 }
-                else{
-                    // go to vendor home
-                }
             }
+
+
         })
         .catch((res)=>{
             setIsLoading(false)
@@ -73,7 +84,7 @@ export default function Register(){
 
     
         <div className="mb-5 col-span-12 ">
-            <label for="name" className="block mb-2 text-sm font-medium text-gray-700 ">Name</label>
+            <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700 ">Name</label>
             <input 
                 type="text"
                 id="name" 
@@ -92,7 +103,7 @@ export default function Register(){
 
 
         <div className="mb-5 col-span-6">
-            <label for="email" className="block mb-2 text-sm font-medium text-gray-700 ">Email</label>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700 ">Email</label>
             <input type="email" id="email" name="email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} className="shadow-xs bg-amber-50 border border-amber-300 text-gray-700 text-sm rounded-lg focus:outline-amber-500 w-full p-2.5 " placeholder="name@gmail.com" required />
             { formik.errors.email && formik.touched.email ?(
                 <div className="p-3 text-sm text-red-800" role="alert">
@@ -103,7 +114,7 @@ export default function Register(){
 
 
         <div className="mb-5 col-span-6">
-            <label for="phone" className="block mb-2 text-sm font-medium text-gray-700 ">Phone</label>
+            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-700 ">Phone</label>
             <input type="tel" id="phone" name="phone" value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} className="shadow-xs bg-amber-50 border border-amber-300 text-gray-700 text-sm rounded-lg focus:outline-amber-500 w-full p-2.5 " required />
             { formik.errors.phone && formik.touched.phone ?(
                 <div className="p-3 text-sm text-red-800" role="alert">
@@ -114,7 +125,7 @@ export default function Register(){
 
 
         <div className="mb-5 col-span-6">
-            <label for="password" className="block mb-2 text-sm font-medium text-gray-700 ">password</label>
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700 ">password</label>
             <input type="password" id="password" name="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} className="shadow-xs bg-amber-50 border border-amber-300 text-gray-700 text-sm rounded-lg focus:outline-amber-500 w-full p-2.5 " required />
             { formik.errors.password && formik.touched.password ?(
                 <div className="p-3 text-sm text-red-800" role="alert">
@@ -125,7 +136,7 @@ export default function Register(){
 
 
         <div className="mb-5 col-span-6">
-            <label for="repeat-password" className="block mb-2 text-sm font-medium text-gray-700 ">Repeat password</label>
+            <label htmlFor="repeat-password" className="block mb-2 text-sm font-medium text-gray-700 ">Repeat password</label>
             <input type="password" id="repeat-password" name="rePassword" value={formik.values.rePassword} onChange={formik.handleChange} onBlur={formik.handleBlur} className="shadow-xs bg-amber-50 border border-amber-300 text-gray-700 text-sm rounded-lg focus:outline-amber-500 w-full p-2.5 " required />
             { formik.errors.rePassword && formik.touched.rePassword ?(
                 <div className="p-3 text-sm text-red-800" role="alert">
@@ -136,13 +147,13 @@ export default function Register(){
 
 
         <div className="mb-5 col-span-6">
-            <label for="age" className="block mb-2 text-sm font-medium text-gray-700 ">Age</label>
+            <label htmlFor="age" className="block mb-2 text-sm font-medium text-gray-700 ">Age</label>
             <input type="number" id="age" className="shadow-xs bg-amber-50 border border-amber-300 text-gray-700 text-sm rounded-lg focus:outline-amber-500 w-full p-2.5 " required />
         </div>
 
 
         <div className="mb-5 col-span-6">
-            <label for="stat" className="block mb-2 text-sm font-medium text-gray-700 ">hvm</label>
+            <label htmlFor="stat" className="block mb-2 text-sm font-medium text-gray-700 ">hvm</label>
             <select id="stat" className="shadow-xs bg-amber-50 border border-amber-300 text-gray-700 text-sm rounded-lg focus:outline-amber-500 w-full p-2.5 ">
 
                 <option>United States</option>

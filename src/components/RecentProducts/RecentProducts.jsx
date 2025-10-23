@@ -65,9 +65,10 @@ export default function RecentProducts(){
     
 
     useEffect(()=>{
-        getWishlist()
+        if(userLogin)
+        {getWishlist()}
         getProducts()
-    },[])
+    },[userLogin])
 
     async function addToCart(id){
         setAddToCartLoading(true)

@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute(props){
     
-    if(localStorage.getItem("userToken")){
+    if(localStorage.getItem("userToken")&&localStorage.getItem("userRole")=="user"){
         return props.children
     }
     else{

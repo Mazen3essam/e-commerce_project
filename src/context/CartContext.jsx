@@ -8,7 +8,7 @@ export default function CartContextProvider(props){
 
     let headers= {token : localStorage.getItem("userToken")}
     let[itemsNumber, setitemsNumber] = useState(0)
-    let{userLogin , setuserLogin} =useContext(UserContext)
+    let{userLogin , setuserLogin ,userRole , setuserRole} =useContext(UserContext)
 
     function addProductToCart(productId){
         return axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,{productId:productId},{ headers })
@@ -56,9 +56,9 @@ export default function CartContextProvider(props){
 
 
 
-
     useEffect(()=>{
-        getLoggedUserCart()
+        if(userLogin && userRole == "user")
+            {getLoggedUserCart()}
     },[userLogin])
 
     return <CartContext.Provider value={ { addProductToCart,getLoggedUserCart,updateCartProductQuantity,deleteCartItem , deleteCart , itemsNumber , setitemsNumber , getLoggedUserWishlist , addProductToWishlist , deleteWishlistItem } }>

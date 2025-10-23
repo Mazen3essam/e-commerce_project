@@ -90,9 +90,9 @@ export default function ProductDetails(){
     useEffect(()=>{
         getProduct(id)
         getProducts()
-        getWishlist()
-    },[id , categoryName])
-
+        if(userLogin)
+            {getWishlist()}
+    },[id , categoryName ,userLogin ])
 
 
 

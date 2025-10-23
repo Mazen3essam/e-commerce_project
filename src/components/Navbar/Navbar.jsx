@@ -9,13 +9,15 @@ import { CartContext } from "../../context/cartContext";
 export default function Navbar(){
 
 
-    let{userLogin , setuserLogin} =useContext(UserContext)
+    let{userLogin , setuserLogin ,  userRole , setuserRole } =useContext(UserContext)
     let{ itemsNumber } = useContext(CartContext)
     let navigate = useNavigate()
 
     function signout(){
         localStorage.removeItem("userToken");
         setuserLogin(null);
+        localStorage.removeItem("userRole");
+        setuserRole(null);
         navigate("/")
         toast.success("Bye Bye",{duration: 6000,icon: '😞'})
     }
@@ -37,19 +39,29 @@ export default function Navbar(){
             </Link> 
 
             <ul className="flex gap-3 text-gray-600">
-                <li><Link className="text-gray-600" to="">Home</Link></li>
 
-                {userLogin != null ? <>
-                    <li><Link className="text-gray-600 relative" to="cart">Cart
-                        <div className="absolute top-[-15px] right-[-10px] size-4 text-xs font-semibold bg-amber-500 text-black rounded-full flex items-center justify-center">
-                            {itemsNumber}
-                        </div>
+                
 
-                    </Link></li>
-                    <li><Link className="text-gray-600" to="products">Products</Link></li>
-                    <li><Link className="text-gray-600" to="categories">Categories</Link></li>
-                    <li><Link className="text-gray-600" to="wishlist">Wishlist</Link></li>
-                </>:null}
+                {userLogin != null ? 
+                    userRole == "user" ?<>
+                        <li><Link className="text-gray-600" to="">Home</Link></li>
+                        <li><Link className="text-gray-600 relative" to="cart">Cart
+                            <div className="absolute top-[-15px] right-[-10px] size-4 text-xs font-semibold bg-amber-500 text-black rounded-full flex items-center justify-center">
+                                {itemsNumber}
+                            </div>
+
+                        </Link></li>
+                        <li><Link className="text-gray-600" to="products">Products</Link></li>
+                        <li><Link className="text-gray-600" to="categories">Categories</Link></li>
+                        <li><Link className="text-gray-600" to="wishlist">Wishlist</Link></li>
+                    </>:userRole == "vendor"?<>
+                    </>:userRole == "admin"?<>
+                    <li><Link className="text-gray-600" to="/admin">Home</Link></li>
+                    <li><Link className="text-gray-600 mx-1" to="registered_accounts">Registered accounts</Link></li>
+                    <li><Link className="text-gray-600" to="permissions">Permissions</Link></li>
+                    <li><Link className="text-gray-600" to="posts">Posts</Link></li>
+                    </>:null
+                :<li><Link className="text-gray-600" to="">Home</Link></li>}
             </ul>
 
         </div>

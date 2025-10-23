@@ -12,30 +12,79 @@ import toast from "react-hot-toast";
 
 export default function Login(){
 
-    let{userLogin , setuserLogin} =useContext(UserContext)
+    let{userLogin , setuserLogin , userRole , setuserRole } =useContext(UserContext)
     let navigate = useNavigate()
     let[IsLoading, setIsLoading] = useState(false)
 
     function handleLogin(values) {
         setIsLoading(true)
         //call api
+        // http://marketplace.runasp.net/
 
         axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signin`,values)
 
         .then((res)=>{
             setIsLoading(false)
+            //
             if(res.data.message =="success"){
-                if(res.data.user.role == "user"){
+                localStorage.setItem("userRole","admin")
+
+                if( localStorage.getItem("userRole") == "vendor"){
+                    //console.log(res.data.user.role);
                     localStorage.setItem("userToken",res.data.token)
-                    setuserLogin(res.data.token)    
-                    //go to customer home
+                    setuserLogin(res.data.token) 
+                    setuserRole("vendor")    
+                    toast.success("Welcome back",{duration: 6000,icon: '❤️'})
+                    navigate("/vendor")
+                }
+                else if( localStorage.getItem("userRole") == "admin"){
+                    //console.log(res.data.user.role);
+                    localStorage.setItem("userToken",res.data.token)
+                    setuserLogin(res.data.token) 
+                    setuserRole("admin")    
+                    toast.success("Welcome back",{duration: 6000,icon: '❤️'})
+                    navigate("/admin")
+                }
+                else if( localStorage.getItem("userRole") == "user"){
+                    //console.log(res.data.user.role);
+                    localStorage.setItem("userToken",res.data.token)
+                    setuserLogin(res.data.token) 
+                    setuserRole("user")    
                     toast.success("Welcome back",{duration: 6000,icon: '❤️'})
                     navigate("/")
                 }
-                else{
-                    // go to vendor home
+            }
+            //
+
+            /*
+            if(res.data.message =="success"){
+                if(res.data.user.role == "user"){
+                    localStorage.setItem("userRole","user")
+                    localStorage.setItem("userToken",res.data.token)
+                    setuserLogin(res.data.token) 
+                    setuserRole("user")    
+                    toast.success("Welcome back",{duration: 6000,icon: '❤️'})
+                    navigate("/")
+                }
+                else if(res.data.user.role == "vendor"){
+                    localStorage.setItem("userRole","vendor")
+                    localStorage.setItem("userToken",res.data.token)
+                    setuserLogin(res.data.token) 
+                    setuserRole("vendor")    
+                    toast.success("Welcome back",{duration: 6000,icon: '❤️'})
+                    navigate("/vendor")
+                }
+                    else if(res.data.user.role == "admin"){
+                    localStorage.setItem("userRole","admin")
+                    localStorage.setItem("userToken",res.data.token)
+                    setuserLogin(res.data.token) 
+                    setuserRole("admin")    
+                    toast.success("Welcome back",{duration: 6000,icon: '❤️'})
+                    navigate("/admin")
                 }
             }
+            
+            */
         })
         .catch((res)=>{
             setIsLoading(false)
