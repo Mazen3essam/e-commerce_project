@@ -3,7 +3,7 @@ import style from "./Products.module.css"
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../context/CartContext";
 import toast from "react-hot-toast";
 
 export default function Products(){

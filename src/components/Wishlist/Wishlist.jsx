@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import style from "./Wishlist.module.css"
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";

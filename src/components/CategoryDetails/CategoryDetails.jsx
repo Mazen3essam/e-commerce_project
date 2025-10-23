@@ -3,7 +3,7 @@ import style from "./CategoryDetails.module.css"
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../context/CartContext";
 import toast from "react-hot-toast";
 
 
