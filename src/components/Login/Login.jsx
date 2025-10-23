@@ -27,7 +27,7 @@ export default function Login(){
             setIsLoading(false)
             //
             if(res.data.message =="success"){
-                localStorage.setItem("userRole","vendor")
+                localStorage.setItem("userRole","user")
 
                 if( localStorage.getItem("userRole") == "vendor"){
                     //console.log(res.data.user.role);
@@ -35,7 +35,7 @@ export default function Login(){
                     setuserLogin(res.data.token) 
                     setuserRole("vendor")    
                     toast.success("Welcome back",{duration: 6000,icon: '❤️'})
-                    navigate("/vendor")
+                    navigate("/")
                 }
                 else if( localStorage.getItem("userRole") == "admin"){
                     //console.log(res.data.user.role);
@@ -43,7 +43,7 @@ export default function Login(){
                     setuserLogin(res.data.token) 
                     setuserRole("admin")    
                     toast.success("Welcome back",{duration: 6000,icon: '❤️'})
-                    navigate("/admin")
+                    navigate("/")
                 }
                 else if( localStorage.getItem("userRole") == "user"){
                     //console.log(res.data.user.role);
