@@ -8,10 +8,10 @@ export default function LoginProtectedRoute(props){
         return <Navigate to={"/"} />
     }
     else if(localStorage.getItem("userToken")&&localStorage.getItem("userRole")=="vendor"){
-        return <Navigate to={"/vendor"} />
+        return <Navigate to={"/"} />
     }
     else if(localStorage.getItem("userToken")&&localStorage.getItem("userRole")=="admin"){
-        return <Navigate to={"/admin"} />
+        return <Navigate to={"/"} />
     }
     else{
         return props.children
