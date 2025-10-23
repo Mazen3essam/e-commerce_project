@@ -27,7 +27,7 @@ export default function Login(){
             setIsLoading(false)
             //
             if(res.data.message =="success"){
-                localStorage.setItem("userRole","admin")
+                localStorage.setItem("userRole","vendor")
 
                 if( localStorage.getItem("userRole") == "vendor"){
                     //console.log(res.data.user.role);
