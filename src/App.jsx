@@ -12,7 +12,7 @@ import UserContextProvider from './context/UserContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import CartContextProvider from './context/cartContext';
+import CartContextProvider from './context/CartContext';
 import { Toaster } from 'react-hot-toast';
 import CategoryDetails from './components/CategoryDetails/CategoryDetails';
 import Wishlist from './components/Wishlist/Wishlist';
